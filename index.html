@@ -1,0 +1,141 @@
+﻿<!doctype html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+        <title>Meu Bolso</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap"
+            rel="stylesheet"
+        />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+        <link rel="stylesheet" href="css/styles.css" />
+    </head>
+
+    <body>
+        <div class="boot" id="boot"><i class="fa-solid fa-spinner fa-spin"></i></div>
+
+        <!-- LOGIN -->
+        <main class="auth hide" id="auth">
+            <div class="hero">
+                <div class="logo"><i class="fa-solid fa-wallet"></i></div>
+                <h1>Meu Bolso</h1>
+                <p>Seu dinheiro organizado, em qualquer lugar.</p>
+            </div>
+            <div class="auth-card">
+                <div class="seg" id="authSeg">
+                    <button class="on" data-m="in">Entrar</button>
+                    <button data-m="up">Criar conta</button>
+                </div>
+                <div class="input">
+                    <i class="fa-solid fa-envelope"></i>
+                    <input
+                        class="field"
+                        id="email"
+                        type="email"
+                        placeholder="E-mail"
+                        autocomplete="email"
+                        aria-label="E-mail"
+                    />
+                </div>
+                <div class="input">
+                    <i class="fa-solid fa-lock"></i>
+                    <input
+                        class="field"
+                        id="pass"
+                        type="password"
+                        placeholder="Senha (mín. 6 caracteres)"
+                        autocomplete="current-password"
+                        aria-label="Senha"
+                    />
+                    <button class="eye" id="eye" type="button" aria-label="Mostrar senha">
+                        <i class="fa-solid fa-eye"></i>
+                    </button>
+                </div>
+                <div class="msg" id="authMsg" role="alert"></div>
+                <button class="btn" id="authBtn"><span id="authBtnTxt">Entrar</span></button>
+            </div>
+        </main>
+
+        <!-- APP -->
+        <div class="hide" id="main">
+            <div class="app">
+                <div class="top">
+                    <div>
+                        <h1 id="hello">Olá</h1>
+                        <p id="who"></p>
+                    </div>
+                    <button class="logout" id="logout" aria-label="Sair da conta">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                    </button>
+                </div>
+
+                <section id="v-home">
+                    <div class="balance">
+                        <small>Saldo total</small>
+                        <div class="val" id="bal">R$ 0,00</div>
+                        <div class="flow">
+                            <div>
+                                <span><i class="fa-solid fa-arrow-trend-up"></i> Receitas</span><b id="inc">R$ 0,00</b>
+                            </div>
+                            <div>
+                                <span><i class="fa-solid fa-arrow-trend-down"></i> Despesas</span
+                                ><b id="exp">R$ 0,00</b>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="seg" id="seg">
+                        <button data-f="all" class="on">Todas</button>
+                        <button data-f="in">Receitas</button>
+                        <button data-f="out">Despesas</button>
+                    </div>
+                    <div class="row-title">
+                        <h3 class="sec-title">Movimentações</h3>
+                        <button class="pill" id="add2"><i class="fa-solid fa-plus"></i> Adicionar</button>
+                    </div>
+                    <div class="list" id="list"></div>
+                </section>
+
+                <section id="v-sum" class="hide">
+                    <h3 class="sec-title">Para onde vai seu dinheiro</h3>
+                    <div class="card" id="cats"></div>
+                    <h3 class="sec-title">Maiores receitas</h3>
+                    <div class="card" id="incs"></div>
+                </section>
+            </div>
+
+            <nav class="nav">
+                <div class="nav-in">
+                    <button class="tab on" data-v="home"><i class="fa-solid fa-house"></i>Início</button>
+                    <button class="fab" id="add" aria-label="Nova movimentação"></button>
+                    <button class="tab" data-v="sum"><i class="fa-solid fa-chart-pie"></i>Resumo</button>
+                </div>
+            </nav>
+
+            <div class="ov" id="ov"></div>
+            <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="Nova movimentação">
+                <div class="sheet-in">
+                    <div class="grab"></div>
+                    <h2>Nova movimentação</h2>
+                    <div class="type">
+                        <button class="out on" data-t="out"><i class="fa-solid fa-arrow-down"></i> Despesa</button>
+                        <button class="in" data-t="in"><i class="fa-solid fa-arrow-up"></i> Receita</button>
+                    </div>
+                    <label for="amount">Valor</label>
+                    <input id="amount" class="field big" inputmode="decimal" placeholder="0,00" autocomplete="off" />
+                    <label for="desc">Descrição</label>
+                    <input id="desc" class="field" placeholder="Ex.: Mercado" maxlength="40" autocomplete="off" />
+                    <label>Categoria</label>
+                    <div class="chips" id="chips"></div>
+                    <label for="date">Data</label>
+                    <input id="date" type="date" class="field" />
+                    <div class="msg" id="err" style="margin-top: 10px"></div>
+                    <button class="btn" id="save"><i class="fa-solid fa-check"></i> Salvar movimentação</button>
+                </div>
+            </div>
+        </div>
+        <div class="toast" id="toast"></div>
+        <script src="script/js.js" defer></script>
+    </body>
+</html>
