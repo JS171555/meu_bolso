@@ -20,13 +20,16 @@ Abaixo estão as telas do Meu Bolso, organizadas na mesma sequência enviada (fo
 
 <div align="center">
 
-<img src="https://i.imgur.com/UGI8qly.jpeg" alt="Tela 1 do Meu Bolso" width="320">
-<br><br>
-<img src="https://i.imgur.com/aKJWXsE.jpeg" alt="Tela 2 do Meu Bolso" width="320">
-<br><br>
-<img src="https://i.imgur.com/8DaiSWO.jpeg" alt="Tela 3 do Meu Bolso" width="320">
-<br><br>
-<img src="https://i.imgur.com/b1ZDqbL.jpeg" alt="Tela 4 do Meu Bolso" width="320">
+<table>
+  <tr>
+    <td align="center"><img src="https://i.imgur.com/UGI8qly.jpeg" alt="Tela 1 do Meu Bolso" width="320"></td>
+    <td align="center"><img src="https://i.imgur.com/aKJWXsE.jpeg" alt="Tela 2 do Meu Bolso" width="320"></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="https://i.imgur.com/8DaiSWO.jpeg" alt="Tela 3 do Meu Bolso" width="320"></td>
+    <td align="center"><img src="https://i.imgur.com/b1ZDqbL.jpeg" alt="Tela 4 do Meu Bolso" width="320"></td>
+  </tr>
+</table>
 
 </div>
 
