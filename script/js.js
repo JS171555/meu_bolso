@@ -1,6 +1,38 @@
 const SUPABASE_URL = "https://bqnmsekhfndojjkwpvdk.supabase.co";
 const SUPABASE_KEY = "sb_publishable_lFPD7Bo8GzQEaxkoNGJXHw_FX0BkODJ";
-const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+// Alguns WebViews bloqueiam ou lançam exceções ao acessar localStorage.
+// Mantém uma cópia em memória como fallback para a sessão atual.
+const memoryStorage = new Map();
+const safeStorage = {
+    getItem(key) {
+        try {
+            const value = window.localStorage.getItem(key);
+            if (value !== null) memoryStorage.set(key, value);
+            return value ?? memoryStorage.get(key) ?? null;
+        } catch (_) {
+            return memoryStorage.get(key) ?? null;
+        }
+    },
+    setItem(key, value) {
+        const text = String(value);
+        memoryStorage.set(key, text);
+        try { window.localStorage.setItem(key, text); } catch (_) { /* fallback em memória */ }
+    },
+    removeItem(key) {
+        memoryStorage.delete(key);
+        try { window.localStorage.removeItem(key); } catch (_) { /* fallback em memória */ }
+    },
+};
+
+const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
+    auth: {
+        storage: safeStorage,
+        persistSession: true,
+        autoRefreshToken: true,
+        detectSessionInUrl: true,
+    },
+});
 
 const CATS = {
     out: [
@@ -130,10 +162,22 @@ $("logout").onclick = async () => {
     btn.disabled = true;
     btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>';
     try {
-        const { error } = await sb.auth.signOut();
+        // scope:"local" remove a sessão deste dispositivo sem depender da
+        // disponibilidade do endpoint de logout global (importante em WebViews).
+        const { error } = await sb.auth.signOut({ scope: "local" });
         if (error) throw error;
+        user = null;
+        tx = [];
+        showAuth();
+        toast("Você saiu da sua conta.");
     } catch (err) {
-        toast("Não foi possível sair. Tente novamente.");
+        console.error("Falha ao encerrar sessão:", err);
+        // Não mantenha a tela autenticada presa caso a limpeza local tenha
+        // falhado por limitação do armazenamento do WebView.
+        user = null;
+        tx = [];
+        showAuth();
+        toast("Sessão encerrada neste aparelho. Se necessário, feche e abra o app.");
     } finally {
         btn.disabled = false;
         btn.innerHTML = '<i class="fa-solid fa-right-from-bracket"></i>';
@@ -150,10 +194,14 @@ sb.auth.onAuthStateChange((ev, session) => {
     }
 });
 sb.auth.getSession().then(({ data, error }) => {
-    if (error) toast("Não foi possível verificar sua sessão.");
-    if (!data.session) showAuth();
-}).catch(() => {
-    toast("Não foi possível conectar. Verifique sua internet.");
+    if (error) {
+        console.warn("Não foi possível verificar a sessão:", error);
+        toast("Não foi possível verificar sua sessão. Tente entrar novamente.");
+    }
+    if (!data?.session) showAuth();
+}).catch((err) => {
+    console.warn("Falha ao recuperar sessão:", err);
+    toast("Não foi possível verificar sua sessão. Verifique a conexão e entre novamente.");
     showAuth();
 });
 
