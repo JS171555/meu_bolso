@@ -99,7 +99,13 @@ async function submitAuth() {
             const { error } = await sb.auth.signInWithPassword({ email, password });
             if (error) throw error;
         } else {
-            const { data, error } = await sb.auth.signUp({ email, password });
+            const { data, error } = await sb.auth.signUp({
+    email,
+    password,
+    options: {
+        emailRedirectTo: "https://js171555.github.io/meu_bolso/"
+    }
+});
             if (error) throw error;
             if (!data.session) {
                 msg.classList.add("ok");
