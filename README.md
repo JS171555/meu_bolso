@@ -1,12 +1,36 @@
-# Meu Bolso
+<div align="center">
 
-**Controle financeiro pessoal simples, responsivo e conectado à nuvem.**
+# 💰 Meu Bolso
+
+### Controle financeiro pessoal simples, responsivo e conectado à nuvem.
+
+[![Acessar aplicação](https://img.shields.io/badge/🚀_Acessar-aplicação-16a34a?style=for-the-badge)](https://js171555.github.io/meu_bolso/)
+[![Feito com HTML, CSS e JavaScript](https://img.shields.io/badge/Feito%20com-HTML%20%7C%20CSS%20%7C%20JavaScript-2563eb?style=for-the-badge)](#tecnologias)
+[![Supabase](https://img.shields.io/badge/Backend-Supabase-3ecf8e?style=for-the-badge&logo=supabase&logoColor=white)](#tecnologias)
+
+</div>
 
 Meu Bolso é uma aplicação web para registrar receitas e despesas, acompanhar o saldo e visualizar para onde o dinheiro está indo. A interface foi pensada para ser direta e confortável em dispositivos móveis, com autenticação de usuários e persistência dos lançamentos por meio do Supabase.
 
 > **Status:** primeira versão do projeto. O escopo atual prioriza os registros financeiros essenciais e uma visão rápida do saldo.
 
-## Funcionalidades
+## 📱 Telas do aplicativo
+
+Abaixo estão as telas do Meu Bolso, organizadas na mesma sequência enviada (formato vertical de stories):
+
+<div align="center">
+
+<img src="https://i.imgur.com/UGI8qly.jpeg" alt="Tela 1 do Meu Bolso" width="320">
+<br><br>
+<img src="https://i.imgur.com/aKJWXsE.jpeg" alt="Tela 2 do Meu Bolso" width="320">
+<br><br>
+<img src="https://i.imgur.com/8DaiSWO.jpeg" alt="Tela 3 do Meu Bolso" width="320">
+<br><br>
+<img src="https://i.imgur.com/b1ZDqbL.jpeg" alt="Tela 4 do Meu Bolso" width="320">
+
+</div>
+
+## ✨ Funcionalidades
 
 - **Cadastro e login:** criação de conta e autenticação por e-mail e senha.
 - **Saldo consolidado:** cálculo do saldo a partir da diferença entre receitas e despesas.
@@ -18,7 +42,7 @@ Meu Bolso é uma aplicação web para registrar receitas e despesas, acompanhar 
 - **Interface responsiva:** layout compacto para telas menores e suporte ao tema escuro conforme a preferência do sistema operacional.
 - **Dados na nuvem:** integração com Supabase para autenticação e armazenamento.
 
-## Tecnologias
+## 🧰 Tecnologias
 
 | Tecnologia | Utilização |
 |---|---|
@@ -31,7 +55,7 @@ Meu Bolso é uma aplicação web para registrar receitas e despesas, acompanhar 
 
 O projeto não utiliza framework JavaScript nem precisa de etapa de compilação. As bibliotecas externas são carregadas por CDN.
 
-## Estrutura do projeto
+## 📁 Estrutura do projeto
 
 ```text
 meu-bolso/
@@ -43,26 +67,26 @@ meu-bolso/
 └── README.md        # Documentação do projeto
 ```
 
-## Como executar localmente
+## 🚀 Como executar localmente
 
-### Pré-requisitos
+### 📋 Pré-requisitos
 
 - Um navegador moderno atualizado.
 - Um projeto Supabase configurado, com autenticação por e-mail habilitada e a tabela `transactions` criada.
 - Python 3 **ou** uma extensão de servidor local, como Live Server no Visual Studio Code.
 
-### 1. Obtenha o código
+### 1. 📥 Obtenha o código
 
-Clone o repositório pelo endereço exibido na página do GitHub:
+Clone este repositório e entre na pasta do projeto:
 
 ```bash
-git clone <URL_DO_REPOSITORIO>
-cd <PASTA_DO_PROJETO>
+git clone https://github.com/JS171555/meu_bolso.git
+cd meu_bolso
 ```
 
-Se você baixou o ZIP original, extraia-o e entre na pasta `meu_bolso/`. Ao criar o repositório, coloque o conteúdo dessa pasta na raiz do repositório para que `index.html`, `css/` e `script/` fiquem nos caminhos indicados acima.
+Se você baixou o ZIP, extraia-o e execute os comandos na pasta que contém `index.html`, `css/` e `script/`.
 
-### 2. Configure o Supabase
+### 2. 🔑 Configure o Supabase
 
 No arquivo `script/js.js`, configure a URL do seu projeto e a chave pública (*publishable key*) do Supabase no início do arquivo:
 
@@ -73,7 +97,7 @@ const SUPABASE_KEY = "SUA_CHAVE_PUBLICA_SUPABASE";
 
 Use a URL e a chave pública disponibilizadas nas configurações de API do seu projeto Supabase. **Não coloque uma chave `service_role` ou qualquer chave secreta no JavaScript do navegador.** A chave pública pode ser usada no frontend, mas a proteção dos registros depende das políticas de acesso do banco.
 
-### 3. Crie a tabela e configure a segurança
+### 3. 🛡️ Crie a tabela e configure a segurança
 
 No **SQL Editor** do Supabase, execute o SQL abaixo em um projeto novo. Ele cria a tabela esperada pelo código e ativa a segurança por linha (*Row Level Security* — RLS), restringindo cada usuário autenticado aos próprios registros.
 
@@ -115,7 +139,7 @@ using (auth.uid() = user_id);
 
 Em **Authentication**, habilite o provedor de e-mail. Se a confirmação de e-mail estiver habilitada, o usuário deverá confirmar o link recebido antes de entrar. Ao publicar o app, configure também a URL do site e as URLs de redirecionamento permitidas no Supabase para o endereço publicado.
 
-### 4. Inicie um servidor local
+### 4. 💻 Inicie um servidor local
 
 Na pasta que contém `index.html`, execute:
 
@@ -125,7 +149,7 @@ python -m http.server 5500
 
 Abra [http://localhost:5500](http://localhost:5500) no navegador. Também é possível usar o **Live Server** no Visual Studio Code. Servir o projeto por HTTP local evita limitações que podem ocorrer ao abrir o arquivo diretamente com o protocolo `file://`.
 
-## Publicação
+## 🌐 Publicação
 
 Como a aplicação é estática, ela pode ser hospedada em serviços como **GitHub Pages** ou outro host de sites estáticos.
 
@@ -137,7 +161,7 @@ Para publicar no GitHub Pages:
 4. Cadastre essa URL nas configurações de autenticação e redirecionamento do Supabase.
 5. Teste cadastro, login, criação de lançamento e exclusão com contas diferentes para confirmar que cada conta vê apenas os próprios dados.
 
-## Escopo atual e próximos passos
+## 🗺️ Escopo atual e próximos passos
 
 A primeira versão cobre o fluxo principal de registro e consulta de receitas e despesas. Entre as evoluções possíveis estão:
 
@@ -150,7 +174,7 @@ A primeira versão cobre o fluxo principal de registro e consulta de receitas e 
 
 Esses itens são sugestões de evolução, não funcionalidades já implementadas nesta versão.
 
-## Privacidade e segurança
+## 🔒 Privacidade e segurança
 
 O Meu Bolso trabalha com informações financeiras pessoais. Antes de usar com dados reais ou divulgar uma instância pública:
 
@@ -159,11 +183,11 @@ O Meu Bolso trabalha com informações financeiras pessoais. Antes de usar com d
 - Nunca exponha chaves secretas ou a chave `service_role` no frontend ou no repositório.
 - Revise as configurações de autenticação, confirmação de e-mail e URLs de redirecionamento do Supabase.
 
-## Licença
+## 📄 Licença
 
 Nenhum arquivo de licença foi incluído no projeto recebido. A licença ainda precisa ser definida. Até que uma licença seja adicionada ao repositório, não presuma que o código esteja liberado para redistribuição ou uso sob uma licença específica.
 
-## Autor
+## 👤 Autor
 
 Desenvolvido por [JS171555](https://github.com/JS171555).
 
