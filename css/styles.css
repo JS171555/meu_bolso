@@ -614,3 +614,32 @@ label {
     opacity: 1;
     transform: translate(-50%, 0);
 }
+/* Microinterações consistentes, com movimento reduzido respeitado */
+button, .tx, .card, .balance, .auth-card {
+    transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease,
+        color 180ms ease, border-color 180ms ease, opacity 180ms ease;
+}
+button:not(:disabled):active { transform: scale(.97); }
+button:disabled { cursor: wait; }
+@media (hover: hover) and (pointer: fine) {
+    .btn:hover:not(:disabled), .pill:hover, .fab:hover { filter: brightness(1.05); box-shadow: 0 8px 22px rgba(48,177,85,.24); }
+    .tx:hover, .card:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(29,51,32,.08); }
+    .logout:hover, .del:hover, .chip:hover, .seg button:hover { background-color: var(--surface2); }
+}
+.btn:disabled { opacity: .68; }
+/* Não animar com transform o ancestral da folha: isso muda o containing block de position:fixed. */
+#main:not(.hide) { animation: fade-in .22s ease both; }
+.tx { animation: enter .24s ease both; }
+.skeleton-row {
+    height: 68px;
+    border-radius: 18px;
+    background: linear-gradient(100deg, var(--surface) 25%, var(--surface2) 45%, var(--surface) 65%);
+    background-size: 220% 100%;
+    animation: shimmer 1.25s linear infinite;
+}
+@keyframes shimmer { to { background-position-x: -220%; } }
+@keyframes enter { from { opacity: 0; transform: translateY(7px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}

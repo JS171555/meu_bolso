@@ -1,4 +1,4 @@
-﻿const SUPABASE_URL = "https://bqnmsekhfndojjkwpvdk.supabase.co";
+const SUPABASE_URL = "https://bqnmsekhfndojjkwpvdk.supabase.co";
 const SUPABASE_KEY = "sb_publishable_lFPD7Bo8GzQEaxkoNGJXHw_FX0BkODJ";
 const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
@@ -92,7 +92,8 @@ async function submitAuth() {
     }
     const btn = $("authBtn");
     btn.disabled = true;
-    $("authBtnTxt").innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i>';
+    btn.setAttribute("aria-busy", "true");
+    $("authBtnTxt").innerHTML = `<i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i> ${mode === "in" ? "Entrando..." : "Criando conta..."}`;
     try {
         if (mode === "in") {
             const { error } = await sb.auth.signInWithPassword({ email, password });
@@ -107,16 +108,30 @@ async function submitAuth() {
         }
     } catch (err) {
         msg.textContent = translate(err.message || "");
+    } finally {
+        btn.disabled = false;
+        btn.removeAttribute("aria-busy");
+        $("authBtnTxt").textContent = mode === "in" ? "Entrar" : "Criar conta";
     }
-    btn.disabled = false;
-    $("authBtnTxt").textContent = mode === "in" ? "Entrar" : "Criar conta";
 }
 $("authBtn").onclick = submitAuth;
 $("pass").onkeydown = (e) => {
     if (e.key === "Enter") submitAuth();
 };
 $("logout").onclick = async () => {
-    await sb.auth.signOut();
+    const btn = $("logout");
+    if (btn.disabled) return;
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>';
+    try {
+        const { error } = await sb.auth.signOut();
+        if (error) throw error;
+    } catch (err) {
+        toast("Não foi possível sair. Tente novamente.");
+    } finally {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fa-solid fa-right-from-bracket"></i>';
+    }
 };
 
 sb.auth.onAuthStateChange((ev, session) => {
@@ -128,30 +143,40 @@ sb.auth.onAuthStateChange((ev, session) => {
         showAuth();
     }
 });
-sb.auth.getSession().then(({ data }) => {
+sb.auth.getSession().then(({ data, error }) => {
+    if (error) toast("Não foi possível verificar sua sessão.");
     if (!data.session) showAuth();
+}).catch(() => {
+    toast("Não foi possível conectar. Verifique sua internet.");
+    showAuth();
 });
 
 /* ---------- Dados ---------- */
 async function loadTx() {
-    const { data, error } = await sb
-        .from("transactions")
-        .select("*")
-        .order("date", { ascending: false })
-        .order("created_at", { ascending: false });
-    if (error) {
-        toast("Erro ao carregar dados");
-        tx = [];
-    } else
-        tx = data.map((r) => ({
-            id: r.id,
-            type: r.type,
-            amount: Number(r.amount),
-            desc: r.description,
-            cat: r.category,
-            date: r.date,
+    const list = $("list");
+    let failed = false;
+    list.setAttribute("aria-busy", "true");
+    list.innerHTML = '<div class="skeleton-row" aria-hidden="true"></div><div class="skeleton-row" aria-hidden="true"></div><div class="skeleton-row" aria-hidden="true"></div>';
+    try {
+        const { data, error } = await sb
+            .from("transactions")
+            .select("*")
+            .order("date", { ascending: false })
+            .order("created_at", { ascending: false });
+        if (error) throw error;
+        tx = (data || []).map((r) => ({
+            id: r.id, type: r.type, amount: Number(r.amount), desc: r.description,
+            cat: r.category, date: r.date,
         }));
-    render();
+    } catch (err) {
+        toast("Erro ao carregar dados. Tente novamente.");
+        tx = [];
+        failed = true;
+    } finally {
+        list.removeAttribute("aria-busy");
+        render();
+        if (failed) list.innerHTML = '<div class="empty">Não foi possível carregar as movimentações.<br><button class="retry" type="button">Tentar novamente</button></div>';
+    }
 }
 function render() {
     const inc = tx.filter((t) => t.type === "in").reduce((s, t) => s + t.amount, 0);
@@ -265,51 +290,54 @@ document.querySelectorAll(".tab").forEach(
         })
 );
 $("list").onclick = async (e) => {
+    if (e.target.closest(".retry")) { loadTx(); return; }
     const b = e.target.closest(".del");
-    if (!b) return;
-    const { error } = await sb.from("transactions").delete().eq("id", b.dataset.id);
-    if (error) {
-        toast("Não foi possível excluir");
-        return;
+    if (!b || b.disabled) return;
+    const original = b.innerHTML;
+    b.disabled = true;
+    b.setAttribute("aria-busy", "true");
+    b.innerHTML = '<i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>';
+    try {
+        const { error } = await sb.from("transactions").delete().eq("id", b.dataset.id);
+        if (error) throw error;
+        tx = tx.filter((t) => String(t.id) !== b.dataset.id);
+        render();
+        toast("Movimentação excluída");
+    } catch (err) {
+        b.disabled = false;
+        b.removeAttribute("aria-busy");
+        b.innerHTML = original;
+        toast("Não foi possível excluir. Tente novamente.");
     }
-    tx = tx.filter((t) => String(t.id) !== b.dataset.id);
-    render();
-    toast("Movimentação excluída");
 };
 $("save").onclick = async () => {
+    const btn = $("save");
+    if (btn.disabled) return;
     const v = parseFloat($("amount").value.replace(/\./g, "").replace(",", "."));
     const d = $("desc").value.trim();
-    if (!(v > 0)) {
-        $("err").textContent = "Informe um valor maior que zero.";
-        return;
-    }
-    if (!d) {
-        $("err").textContent = "Informe uma descrição.";
-        return;
-    }
-    const btn = $("save");
+    if (!(v > 0)) { $("err").textContent = "Informe um valor maior que zero."; return; }
+    if (!d) { $("err").textContent = "Informe uma descrição."; return; }
     btn.disabled = true;
-    const { data, error } = await sb
-        .from("transactions")
-        .insert({ type, amount: v, description: d, category: cat, date: $("date").value || today() })
-        .select()
-        .single();
-    btn.disabled = false;
-    if (error) {
-        console.error(error);
-        $("err").textContent = "Erro ao salvar: " + (error.message || "tente novamente");
-        return;
+    btn.setAttribute("aria-busy", "true");
+    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i> Salvando...';
+    $("err").textContent = "";
+    try {
+        const { data, error } = await sb.from("transactions")
+            .insert({ type, amount: v, description: d, category: cat, date: $("date").value || today() })
+            .select().single();
+        if (error) throw error;
+        tx.unshift({ id: data.id, type: data.type, amount: Number(data.amount), desc: data.description,
+            cat: data.category, date: data.date });
+        tx.sort((a, b) => b.date.localeCompare(a.date));
+        render();
+        closeSheet();
+        toast("Movimentação salva");
+    } catch (err) {
+        console.error(err);
+        $("err").textContent = "Erro ao salvar: " + (err.message || "tente novamente");
+    } finally {
+        btn.disabled = false;
+        btn.removeAttribute("aria-busy");
+        btn.innerHTML = '<i class="fa-solid fa-check"></i> Salvar movimentação';
     }
-    tx.unshift({
-        id: data.id,
-        type: data.type,
-        amount: Number(data.amount),
-        desc: data.description,
-        cat: data.category,
-        date: data.date,
-    });
-    tx.sort((a, b) => b.date.localeCompare(a.date));
-    render();
-    closeSheet();
-    toast("Movimentação salva");
 };
