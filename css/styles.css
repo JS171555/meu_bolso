@@ -178,6 +178,30 @@ button {
     gap: 10px;
     align-items: center;
 }
+
+
+.google-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.google-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.google-mark img {
+    display: block;
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
+
 .btn:disabled {
     opacity: 0.6;
 }
