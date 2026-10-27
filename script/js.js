@@ -1,5 +1,6 @@
 const SUPABASE_URL = "https://bqnmsekhfndojjkwpvdk.supabase.co";
 const SUPABASE_KEY = "sb_publishable_lFPD7Bo8GzQEaxkoNGJXHw_FX0BkODJ";
+const APP_URL = "https://js171555.github.io/meu_bolso/";
 
 // Alguns WebViews bloqueiam ou lançam exceções ao acessar localStorage.
 // Mantém uma cópia em memória como fallback para a sessão atual.
@@ -135,7 +136,7 @@ async function submitAuth() {
     email,
     password,
     options: {
-        emailRedirectTo: "https://js171555.github.io/meu_bolso/"
+        emailRedirectTo: APP_URL
     }
 });
             if (error) throw error;
@@ -153,6 +154,26 @@ async function submitAuth() {
     }
 }
 $("authBtn").onclick = submitAuth;
+$("googleBtn").onclick = async () => {
+    const btn = $("googleBtn");
+    const msg = $("authMsg");
+    msg.classList.remove("ok");
+    msg.textContent = "";
+    btn.disabled = true;
+    btn.setAttribute("aria-busy", "true");
+    try {
+        const { error } = await sb.auth.signInWithOAuth({
+            provider: "google",
+            options: { redirectTo: APP_URL },
+        });
+        if (error) throw error;
+    } catch (err) {
+        console.error("Erro na autenticação com Google:", err);
+        msg.textContent = err.message || "Não foi possível entrar com Google. Tente novamente.";
+        btn.disabled = false;
+        btn.removeAttribute("aria-busy");
+    }
+};
 $("pass").onkeydown = (e) => {
     if (e.key === "Enter") submitAuth();
 };

@@ -181,6 +181,44 @@ button {
 .btn:disabled {
     opacity: 0.6;
 }
+.auth-divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 16px 0;
+    color: var(--muted);
+    font-size: 0.82rem;
+}
+.auth-divider::before,
+.auth-divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--line);
+}
+.google-btn {
+    width: 100%;
+    min-height: 52px;
+    padding: 12px 16px;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: #fff;
+    color: #202124;
+    font-size: 0.96rem;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+.google-btn:hover { background: #f8f9fa; }
+.google-btn:disabled { opacity: 0.6; }
+.google-mark {
+    font-family: Arial, sans-serif;
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #4285f4;
+}
 .seg {
     display: flex;
     background: var(--surface2);
