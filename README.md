@@ -35,7 +35,7 @@ Abaixo estão as telas do Meu Bolso, organizadas na mesma sequência enviada (fo
 
 ## ✨ Funcionalidades
 
-- **Cadastro e login:** criação de conta e autenticação por e-mail e senha.
+- **Cadastro e login:** autenticação por e-mail e senha ou pela conta Google, via Supabase OAuth.
 - **Saldo consolidado:** cálculo do saldo a partir da diferença entre receitas e despesas.
 - **Registro de movimentações:** inclusão de receitas ou despesas com valor, descrição, categoria e data.
 - **Categorias predefinidas:** categorias específicas para entradas e saídas.
@@ -75,7 +75,7 @@ meu-bolso/
 ### 📋 Pré-requisitos
 
 - Um navegador moderno atualizado.
-- Um projeto Supabase configurado, com autenticação por e-mail habilitada e a tabela `transactions` criada.
+- Um projeto Supabase configurado, com autenticação por e-mail e pelo Google habilitada, além da tabela `transactions` criada.
 - Python 3 **ou** uma extensão de servidor local, como Live Server no Visual Studio Code.
 
 ### 1. 📥 Obtenha o código
@@ -140,7 +140,21 @@ using (auth.uid() = user_id);
 
 > **Importante:** o código consulta `transactions` sem filtrar manualmente pelo ID do usuário. Por isso, as políticas RLS não são opcionais: elas são a barreira que impede um usuário de ler ou excluir registros de outra conta. Se a tabela já existir, revise a estrutura e as políticas antes de executar qualquer SQL de criação.
 
-Em **Authentication**, habilite o provedor de e-mail. Se a confirmação de e-mail estiver habilitada, o usuário deverá confirmar o link recebido antes de entrar. Ao publicar o app, configure também a URL do site e as URLs de redirecionamento permitidas no Supabase para o endereço publicado.
+Em **Authentication → Providers**, habilite o provedor de e-mail. Se a confirmação de e-mail estiver habilitada, o usuário deverá confirmar o link recebido antes de entrar.
+
+#### Entrar com Google
+
+O botão **Continuar com Google** usa o provedor OAuth do Supabase. Para habilitá-lo:
+
+1. No Google Cloud Console, crie ou selecione um projeto, configure a tela de consentimento OAuth e crie um **ID do cliente OAuth** do tipo **Aplicativo da Web**.
+2. Na configuração do cliente OAuth no Google, cadastre como URI de redirecionamento autorizado o callback exibido pelo Supabase em **Authentication → Providers → Google**. Em geral, ele tem o formato `https://<PROJECT_REF>.supabase.co/auth/v1/callback`.
+3. No Supabase, abra **Authentication → Providers → Google**, habilite o provedor e informe o **Client ID** e o **Client Secret** fornecidos pelo Google.
+4. Em **Authentication → URL Configuration**, defina a URL do site e inclua nas URLs de redirecionamento permitidas `https://js171555.github.io/meu_bolso/`, que é o destino usado atualmente pelo projeto (`APP_URL` em `script/js.js`). Para testar em outro endereço, adicione também esse endereço permitido e ajuste `APP_URL` para corresponder ao local de execução.
+5. Salve as configurações e teste o fluxo de login. O Supabase processa o retorno do Google e redireciona o usuário para a URL permitida do app.
+
+Mantenha o **Client Secret** somente nas configurações do provedor no Supabase; não o coloque no JavaScript, no README ou no repositório. A `SUPABASE_KEY` usada no frontend é uma chave pública, não substitui o segredo OAuth.
+
+Ao publicar o app, confirme que a URL publicada está configurada tanto como URL do site quanto entre as URLs de redirecionamento permitidas no Supabase.
 
 ### 4. 💻 Inicie um servidor local
 
