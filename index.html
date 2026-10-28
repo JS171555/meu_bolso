@@ -4,6 +4,8 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
         <title>Meu Bolso</title>
+        <meta name="theme-color" content="#166534" />
+        <link rel="manifest" href="manifest.json" />
         <link
             href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap"
             rel="stylesheet"/>
@@ -152,5 +154,13 @@
         </div>
         <div class="toast" id="toast"></div>
         <script src="script/js.js" defer></script>
+        <script>
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', () => {
+                    navigator.serviceWorker.register('./sw.js')
+                        .catch((error) => console.error('Falha ao registar Service Worker:', error));
+                });
+            }
+        </script>
     </body>
 </html>
