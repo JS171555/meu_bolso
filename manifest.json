@@ -1,7 +1,7 @@
 {
   "id": "./",
-  "name": "Meu bolso",
-  "short_name": "AppWeb",
+  "name": "Meu Bolso",
+  "short_name": "Meu Bolso",
   "description": "Seu dinheiro organizado, em qualquer lugar.",
   "lang": "pt-BR",
   "start_url": "./index.html",
