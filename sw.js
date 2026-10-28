@@ -1,5 +1,5 @@
 /* Service Worker do Meu bolso. Mantém os ficheiros locais disponíveis offline. */
-const CACHE_NAME = 'meu-bolso-v1';
+const CACHE_NAME = 'meu-bolso-v2';
 const APP_SHELL = [
   './',
   './index.html',

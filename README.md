@@ -45,6 +45,12 @@ Abaixo estão as telas do Meu Bolso, organizadas na mesma sequência enviada (fo
 - **Interface responsiva:** layout compacto para telas menores e suporte ao tema escuro conforme a preferência do sistema operacional.
 - **Dados na nuvem:** integração com Supabase para autenticação e armazenamento.
 
+## 📲 Instalar no iPhone (iOS)
+
+Abra a aplicação publicada no **Safari** do iPhone: <https://js171555.github.io/meu_bolso/>. Toque em **Compartilhar** e escolha **Adicionar à Tela de Início**; se a opção não aparecer de imediato, role a lista de ações do menu Compartilhar. Confirme o nome e toque em **Adicionar**. Depois, abra o Meu Bolso pelo novo ícone na Tela de Início.
+
+No iOS, a instalação é feita manualmente pelo menu Compartilhar do Safari — não aparece o mesmo aviso automático de instalação usado por alguns navegadores Android. O HTML inclui os metadados de web app da Apple e o ícone `apple-touch-icon` para a tela inicial. A instalação requer conexão HTTPS e pode não estar disponível quando o site é aberto dentro de um navegador incorporado em outro aplicativo.
+
 ## 🧰 Tecnologias
 
 | Tecnologia | Utilização |
