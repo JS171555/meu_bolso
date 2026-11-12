@@ -1,6 +1,6 @@
 <div align="center">
 
-# 💰 Meu Bolso
+# Meu Bolso
 
 ### Controle financeiro pessoal simples, responsivo e pronto para uso em qualquer dispositivo
 
@@ -15,7 +15,7 @@ Meu Bolso é uma aplicação web para registrar receitas e despesas, acompanhar 
 
 > Status: versão funcional focada no fluxo principal de controle financeiro pessoal.
 
-## 📌 Sobre o projeto
+## Sobre o projeto
 
 O Meu Bolso nasceu para ajudar a manter o controle do orçamento diário com uma experiência simples e rápida, sem a necessidade de cadastro em plataformas complexas ou uso de frameworks pesados.
 
@@ -28,7 +28,7 @@ Ele permite:
 - manter os dados separados por usuário autenticado;
 - usar a aplicação como PWA em celular, tablet ou desktop.
 
-## ✨ Funcionalidades
+## Funcionalidades
 
 - Autenticação com e-mail e senha;
 - Login com Google via Supabase OAuth;
@@ -42,7 +42,7 @@ Ele permite:
 - Persistência em banco via Supabase;
 - Instalação como aplicativo na tela inicial do celular.
 
-## 📱 Preview da interface
+## Preview da interface
 
 Abaixo estão algumas telas principais do aplicativo:
 
@@ -61,7 +61,7 @@ Abaixo estão algumas telas principais do aplicativo:
 
 </div>
 
-## 🧰 Tecnologias
+## Tecnologias
 
 | Tecnologia | Uso no projeto |
 | --- | --- |
@@ -74,7 +74,7 @@ Abaixo estão algumas telas principais do aplicativo:
 
 O projeto foi desenvolvido com JavaScript puro e não exige etapa de build ou dependências de instalação via npm.
 
-## 📁 Estrutura do projeto
+## Estrutura do projeto
 
 ```text
 meu_bolso/
@@ -89,10 +89,11 @@ meu_bolso/
 ├── icon-192.png          # Ícone do app para dispositivos
 ├── icon-512.png          # Ícone do app em alta resolução
 ├── README.md             # Documentação do projeto
-└── .github/              # Configurações do GitHub (se houver)
+├── .github/              # Configurações do GitHub (se houver)
+└── .gitignore/           # Arquivos ignorados pelo Git
 ```
 
-## 🚀 Como executar localmente
+## Como executar localmente
 
 ### 1) Clone o repositório
 
@@ -177,7 +178,7 @@ http://localhost:5500
 
 Também é possível usar o Live Server no VS Code para facilitar o desenvolvimento local.
 
-## 🌐 Publicação
+## Publicação
 
 Como a aplicação é estática, ela pode ser hospedada em serviços como GitHub Pages ou qualquer servidor de arquivos estáticos.
 
@@ -190,7 +191,7 @@ Como a aplicação é estática, ela pode ser hospedada em serviços como GitHub
 5. copie a URL gerada;
 6. configure essa URL nas opções de autenticação/redirecionamento do Supabase.
 
-## 📲 Instalação no iPhone (iOS)
+## Instalação no iPhone (iOS)
 
 Abra a aplicação no Safari e siga estes passos:
 
@@ -199,7 +200,7 @@ Abra a aplicação no Safari e siga estes passos:
 3. confirme o nome da aplicação;
 4. a partir daí ela fica disponível como um app instalado.
 
-## 🛡️ Segurança e privacidade
+## Segurança e privacidade
 
 O projeto lida com dados financeiros pessoais. Antes de usar com dados reais:
 
@@ -209,7 +210,7 @@ O projeto lida com dados financeiros pessoais. Antes de usar com dados reais:
 - revise as URLs autorizadas do Supabase para login e redirecionamento;
 - mantenha a autenticação e a confirmação de e-mail configuradas corretamente.
 
-## 🗺️ Roadmap e próximos passos
+## Roadmap e próximos passos
 
 A primeira versão cobre o fluxo principal de registro, consulta e análise financeira. Entre melhorias possíveis estão:
 
@@ -221,11 +222,11 @@ A primeira versão cobre o fluxo principal de registro, consulta e análise fina
 - melhorias de acessibilidade e UX;
 - tratamento mais robusto de erros e validações.
 
-## 📄 Licença
+## Licença
 
-Nenhuma licença foi adicionada ao repositório até o momento. Enquanto uma licença não for definida, o uso do código deve ser tratado com cuidado, especialmente em contextos públicos ou de distribuição.
+Nenhuma licença foi adicionada ao repositório até o momento. Enquanto uma licença não for definida, o uso do código deve ser tratado com cuidado, especialmente em contextos públicos ou de compartilhamento.
 
-## 👤 Autor
+## Autor
 
 Desenvolvido por [JS171555](https://github.com/JS171555).
 
