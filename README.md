@@ -2,113 +2,121 @@
 
 # 💰 Meu Bolso
 
-### Controle financeiro pessoal simples, responsivo e conectado à nuvem.
+### Controle financeiro pessoal simples, responsivo e pronto para uso em qualquer dispositivo
 
-[![Acessar aplicação](https://img.shields.io/badge/🚀_Acessar-aplicação-16a34a?style=for-the-badge)](https://js171555.github.io/meu_bolso/)
-[![Feito com HTML, CSS e JavaScript](https://img.shields.io/badge/Feito%20com-HTML%20%7C%20CSS%20%7C%20JavaScript-2563eb?style=for-the-badge)](#tecnologias)
-[![Supabase](https://img.shields.io/badge/Backend-Supabase-3ecf8e?style=for-the-badge&logo=supabase&logoColor=white)](#tecnologias)
+[![Demo](https://img.shields.io/badge/🚀_Demo-GitHub%20Pages-16a34a?style=for-the-badge)](https://js171555.github.io/meu_bolso/)
+[![Stack](https://img.shields.io/badge/Stack-HTML%20%7C%20CSS%20%7C%20JavaScript-2563eb?style=for-the-badge)](#-tecnologias)
+[![Supabase](https://img.shields.io/badge/Backend-Supabase-3ecf8e?style=for-the-badge&logo=supabase&logoColor=white)](#-tecnologias)
+[![PWA](https://img.shields.io/badge/Tipo-PWA-7c3aed?style=for-the-badge)](#-sobre-o-projeto)
 
 </div>
 
 Meu Bolso é uma aplicação web para registrar receitas e despesas, acompanhar o saldo e visualizar para onde o dinheiro está indo. A interface foi pensada para ser direta e confortável em dispositivos móveis, com autenticação de usuários e persistência dos lançamentos por meio do Supabase.
 
-> **Status:** primeira versão do projeto. O escopo atual prioriza os registros financeiros essenciais e uma visão rápida do saldo.
+> Status: versão funcional focada no fluxo principal de controle financeiro pessoal.
 
-## 📱 Telas do aplicativo
+## 📌 Sobre o projeto
 
-Abaixo estão as telas do Meu Bolso, organizadas na mesma sequência enviada (formato vertical de stories):
+O Meu Bolso nasceu para ajudar a manter o controle do orçamento diário com uma experiência simples e rápida, sem a necessidade de cadastro em plataformas complexas ou uso de frameworks pesados.
+
+Ele permite:
+
+- registrar receitas e despesas;
+- visualizar o saldo atual em tempo real;
+- agrupar gastos por categoria;
+- acompanhar as maiores entradas do mês;
+- manter os dados separados por usuário autenticado;
+- usar a aplicação como PWA em celular, tablet ou desktop.
+
+## ✨ Funcionalidades
+
+- Autenticação com e-mail e senha;
+- Login com Google via Supabase OAuth;
+- Cadastro de receitas e despesas com valor, categoria, descrição e data;
+- Visualização do saldo consolidado e totais por tipo de movimento;
+- Filtros por todas, receitas e despesas;
+- Resumo dos gastos por categoria;
+- Destaque das maiores receitas;
+- Exclusão de lançamentos;
+- Interface responsiva para mobile e desktop;
+- Persistência em banco via Supabase;
+- Instalação como aplicativo na tela inicial do celular.
+
+## 📱 Preview da interface
+
+Abaixo estão algumas telas principais do aplicativo:
 
 <div align="center">
 
 <table>
   <tr>
-    <td align="center"><img src="https://i.imgur.com/UGI8qly.jpeg" alt="Tela 1 do Meu Bolso" width="320"></td>
-    <td align="center"><img src="https://i.imgur.com/aKJWXsE.jpeg" alt="Tela 2 do Meu Bolso" width="320"></td>
+    <td align="center"><img src="https://i.imgur.com/UGI8qly.jpeg" alt="Tela 1 do Meu Bolso" width="320" /></td>
+    <td align="center"><img src="https://i.imgur.com/aKJWXsE.jpeg" alt="Tela 2 do Meu Bolso" width="320" /></td>
   </tr>
   <tr>
-    <td align="center"><img src="https://i.imgur.com/8DaiSWO.jpeg" alt="Tela 3 do Meu Bolso" width="320"></td>
-    <td align="center"><img src="https://i.imgur.com/b1ZDqbL.jpeg" alt="Tela 4 do Meu Bolso" width="320"></td>
+    <td align="center"><img src="https://i.imgur.com/8DaiSWO.jpeg" alt="Tela 3 do Meu Bolso" width="320" /></td>
+    <td align="center"><img src="https://i.imgur.com/b1ZDqbL.jpeg" alt="Tela 4 do Meu Bolso" width="320" /></td>
   </tr>
 </table>
 
 </div>
 
-## ✨ Funcionalidades
-
-- **Cadastro e login:** autenticação por e-mail e senha ou pela conta Google, via Supabase OAuth.
-- **Saldo consolidado:** cálculo do saldo a partir da diferença entre receitas e despesas.
-- **Registro de movimentações:** inclusão de receitas ou despesas com valor, descrição, categoria e data.
-- **Categorias predefinidas:** categorias específicas para entradas e saídas.
-- **Filtros rápidos:** visualização de todas as movimentações, somente receitas ou somente despesas.
-- **Resumo financeiro:** totais de receitas e despesas, gastos agrupados por categoria e destaque para as três maiores receitas.
-- **Exclusão de lançamentos:** remoção de movimentações registradas.
-- **Interface responsiva:** layout compacto para telas menores e suporte ao tema escuro conforme a preferência do sistema operacional.
-- **Dados na nuvem:** integração com Supabase para autenticação e armazenamento.
-
-## 📲 Instalar no iPhone (iOS)
-
-Abra a aplicação publicada no **Safari** do iPhone: <https://js171555.github.io/meu_bolso/>. Toque em **Compartilhar** e escolha **Adicionar à Tela de Início**; se a opção não aparecer de imediato, role a lista de ações do menu Compartilhar. Confirme o nome e toque em **Adicionar**. Depois, abra o Meu Bolso pelo novo ícone na Tela de Início.
-
-No iOS, a instalação é feita manualmente pelo menu Compartilhar do Safari — não aparece o mesmo aviso automático de instalação usado por alguns navegadores Android. O HTML inclui os metadados de web app da Apple e o ícone `apple-touch-icon` para a tela inicial. A instalação requer conexão HTTPS e pode não estar disponível quando o site é aberto dentro de um navegador incorporado em outro aplicativo.
-
 ## 🧰 Tecnologias
 
-| Tecnologia | Utilização |
-|---|---|
-| HTML5 | Estrutura da aplicação |
-| CSS3 | Layout responsivo, componentes e temas |
-| JavaScript (Vanilla) | Interações, cálculos e integração com o backend |
-| Supabase | Autenticação e banco de dados PostgreSQL |
+| Tecnologia | Uso no projeto |
+| --- | --- |
+| HTML5 | Estrutura da interface e conteúdo da aplicação |
+| CSS3 | Layout, responsividade, temas e estilos visuais |
+| JavaScript | Lógica da aplicação, cálculos e interações |
+| Supabase | Autenticação, persistência e banco de dados |
 | Font Awesome 6 | Ícones da interface |
-| Google Fonts — Plus Jakarta Sans | Tipografia |
+| Google Fonts | Tipografia |
 
-O projeto não utiliza framework JavaScript nem precisa de etapa de compilação. As bibliotecas externas são carregadas por CDN.
+O projeto foi desenvolvido com JavaScript puro e não exige etapa de build ou dependências de instalação via npm.
 
 ## 📁 Estrutura do projeto
 
 ```text
-meu-bolso/
-├── index.html       # Estrutura da interface e pontos de entrada
+meu_bolso/
+├── index.html            # Estrutura principal da interface
 ├── css/
-│   └── styles.css   # Estilos, responsividade e tema
+│   └── styles.css        # Estilos e responsividade
 ├── script/
-│   └── js.js        # Autenticação, movimentações e resumo financeiro
-└── README.md        # Documentação do projeto
+│   └── js.js             # Lógica do app, autenticação e dados
+├── assets/               # Ícones e imagens do projeto
+├── manifest.json         # Configuração da PWA
+├── sw.js                 # Service Worker
+├── icon-192.png          # Ícone do app para dispositivos
+├── icon-512.png          # Ícone do app em alta resolução
+├── README.md             # Documentação do projeto
+└── .github/              # Configurações do GitHub (se houver)
 ```
 
 ## 🚀 Como executar localmente
 
-### 📋 Pré-requisitos
-
-- Um navegador moderno atualizado.
-- Um projeto Supabase configurado, com autenticação por e-mail e pelo Google habilitada, além da tabela `transactions` criada.
-- Python 3 **ou** uma extensão de servidor local, como Live Server no Visual Studio Code.
-
-### 1. 📥 Obtenha o código
-
-Clone este repositório e entre na pasta do projeto:
+### 1) Clone o repositório
 
 ```bash
 git clone https://github.com/JS171555/meu_bolso.git
 cd meu_bolso
 ```
 
-Se você baixou o ZIP, extraia-o e execute os comandos na pasta que contém `index.html`, `css/` e `script/`.
+### 2) Configure o Supabase
 
-### 2. 🔑 Configure o Supabase
-
-No arquivo `script/js.js`, configure a URL do seu projeto e a chave pública (*publishable key*) do Supabase no início do arquivo:
+No arquivo `script/js.js`, ajuste as constantes iniciais com a URL e a chave pública do seu projeto Supabase:
 
 ```javascript
 const SUPABASE_URL = "https://SEU-PROJETO.supabase.co";
-const SUPABASE_KEY = "SUA_CHAVE_PUBLICA_SUPABASE";
+const SUPABASE_KEY = "SUA_CHAVE_PUBLICA";
 ```
 
-Use a URL e a chave pública disponibilizadas nas configurações de API do seu projeto Supabase. **Não coloque uma chave `service_role` ou qualquer chave secreta no JavaScript do navegador.** A chave pública pode ser usada no frontend, mas a proteção dos registros depende das políticas de acesso do banco.
+Esses valores ficam em: `Supabase → Project Settings → API`.
 
-### 3. 🛡️ Crie a tabela e configure a segurança
+> Importante: use apenas a chave pública (`anon` / `publishable`) no frontend. Nunca exponha a `service_role` ou qualquer chave secreta no navegador ou no repositório.
 
-No **SQL Editor** do Supabase, execute o SQL abaixo em um projeto novo. Ele cria a tabela esperada pelo código e ativa a segurança por linha (*Row Level Security* — RLS), restringindo cada usuário autenticado aos próprios registros.
+### 3) Crie a tabela de transações
+
+No SQL Editor do Supabase, execute o seguinte script:
 
 ```sql
 create table public.transactions (
@@ -144,71 +152,78 @@ to authenticated
 using (auth.uid() = user_id);
 ```
 
-> **Importante:** o código consulta `transactions` sem filtrar manualmente pelo ID do usuário. Por isso, as políticas RLS não são opcionais: elas são a barreira que impede um usuário de ler ou excluir registros de outra conta. Se a tabela já existir, revise a estrutura e as políticas antes de executar qualquer SQL de criação.
+### 4) Habilite autenticação
 
-Em **Authentication → Providers**, habilite o provedor de e-mail. Se a confirmação de e-mail estiver habilitada, o usuário deverá confirmar o link recebido antes de entrar.
+No painel do Supabase:
 
-#### Entrar com Google
+- vá em `Authentication → Providers`;
+- habilite o provedor de e-mail;
+- habilite o login com Google, se desejar;
+- configure a URL do site e os redirecionamentos permitidos.
 
-O botão **Continuar com Google** usa o provedor OAuth do Supabase. Para habilitá-lo:
+### 5) Inicie o servidor local
 
-1. No Google Cloud Console, crie ou selecione um projeto, configure a tela de consentimento OAuth e crie um **ID do cliente OAuth** do tipo **Aplicativo da Web**.
-2. Na configuração do cliente OAuth no Google, cadastre como URI de redirecionamento autorizado o callback exibido pelo Supabase em **Authentication → Providers → Google**. Em geral, ele tem o formato `https://<PROJECT_REF>.supabase.co/auth/v1/callback`.
-3. No Supabase, abra **Authentication → Providers → Google**, habilite o provedor e informe o **Client ID** e o **Client Secret** fornecidos pelo Google.
-4. Em **Authentication → URL Configuration**, defina a URL do site e inclua nas URLs de redirecionamento permitidas `https://js171555.github.io/meu_bolso/`, que é o destino usado atualmente pelo projeto (`APP_URL` em `script/js.js`). Para testar em outro endereço, adicione também esse endereço permitido e ajuste `APP_URL` para corresponder ao local de execução.
-5. Salve as configurações e teste o fluxo de login. O Supabase processa o retorno do Google e redireciona o usuário para a URL permitida do app.
-
-Mantenha o **Client Secret** somente nas configurações do provedor no Supabase; não o coloque no JavaScript, no README ou no repositório. A `SUPABASE_KEY` usada no frontend é uma chave pública, não substitui o segredo OAuth.
-
-Ao publicar o app, confirme que a URL publicada está configurada tanto como URL do site quanto entre as URLs de redirecionamento permitidas no Supabase.
-
-### 4. 💻 Inicie um servidor local
-
-Na pasta que contém `index.html`, execute:
+Na raiz do projeto, execute:
 
 ```bash
-python -m http.server 5500
+python3 -m http.server 5500
 ```
 
-Abra [http://localhost:5500](http://localhost:5500) no navegador. Também é possível usar o **Live Server** no Visual Studio Code. Servir o projeto por HTTP local evita limitações que podem ocorrer ao abrir o arquivo diretamente com o protocolo `file://`.
+Depois abra no navegador:
+
+```text
+http://localhost:5500
+```
+
+Também é possível usar o Live Server no VS Code para facilitar o desenvolvimento local.
 
 ## 🌐 Publicação
 
-Como a aplicação é estática, ela pode ser hospedada em serviços como **GitHub Pages** ou outro host de sites estáticos.
+Como a aplicação é estática, ela pode ser hospedada em serviços como GitHub Pages ou qualquer servidor de arquivos estáticos.
 
-Para publicar no GitHub Pages:
+### GitHub Pages
 
-1. Envie `index.html`, `css/` e `script/` para a raiz do repositório.
-2. No GitHub, abra **Settings → Pages** e selecione a branch e a pasta que contêm o `index.html`.
-3. Aguarde a publicação e copie a URL gerada.
-4. Cadastre essa URL nas configurações de autenticação e redirecionamento do Supabase.
-5. Teste cadastro, login, criação de lançamento e exclusão com contas diferentes para confirmar que cada conta vê apenas os próprios dados.
+1. Faça push do projeto para o repositório GitHub;
+2. acesse `Settings → Pages`;
+3. selecione a branch e a pasta correta;
+4. aguarde a publicação;
+5. copie a URL gerada;
+6. configure essa URL nas opções de autenticação/redirecionamento do Supabase.
 
-## 🗺️ Escopo atual e próximos passos
+## 📲 Instalação no iPhone (iOS)
 
-A primeira versão cobre o fluxo principal de registro e consulta de receitas e despesas. Entre as evoluções possíveis estão:
+Abra a aplicação no Safari e siga estes passos:
 
-- Edição de movimentações existentes.
-- Filtros por mês e período personalizado.
-- Cadastro e personalização de categorias.
-- Exportação de dados para CSV.
-- Testes automatizados e validações adicionais de acessibilidade.
-- Melhorias no tratamento de datas e mensagens de erro.
+1. toque em `Compartilhar`;
+2. selecione `Adicionar à Tela de Início`;
+3. confirme o nome da aplicação;
+4. a partir daí ela fica disponível como um app instalado.
 
-Esses itens são sugestões de evolução, não funcionalidades já implementadas nesta versão.
+## 🛡️ Segurança e privacidade
 
-## 🔒 Privacidade e segurança
+O projeto lida com dados financeiros pessoais. Antes de usar com dados reais:
 
-O Meu Bolso trabalha com informações financeiras pessoais. Antes de usar com dados reais ou divulgar uma instância pública:
+- confirme que a RLS da tabela `transactions` está habilitada;
+- teste o isolamento das informações com duas contas diferentes;
+- nunca exponha chaves secretas ou `service_role` no frontend;
+- revise as URLs autorizadas do Supabase para login e redirecionamento;
+- mantenha a autenticação e a confirmação de e-mail configuradas corretamente.
 
-- Confirme que a RLS está habilitada na tabela `transactions` e que as políticas limitam `SELECT`, `INSERT` e `DELETE` ao usuário autenticado correspondente.
-- Faça testes com duas contas diferentes para verificar o isolamento dos dados.
-- Nunca exponha chaves secretas ou a chave `service_role` no frontend ou no repositório.
-- Revise as configurações de autenticação, confirmação de e-mail e URLs de redirecionamento do Supabase.
+## 🗺️ Roadmap e próximos passos
+
+A primeira versão cobre o fluxo principal de registro, consulta e análise financeira. Entre melhorias possíveis estão:
+
+- edição de lançamentos existentes;
+- filtros por mês e período personalizado;
+- cadastro e personalização de categorias;
+- exportação em CSV;
+- testes automatizados;
+- melhorias de acessibilidade e UX;
+- tratamento mais robusto de erros e validações.
 
 ## 📄 Licença
 
-Nenhum arquivo de licença foi incluído no projeto recebido. A licença ainda precisa ser definida. Até que uma licença seja adicionada ao repositório, não presuma que o código esteja liberado para redistribuição ou uso sob uma licença específica.
+Nenhuma licença foi adicionada ao repositório até o momento. Enquanto uma licença não for definida, o uso do código deve ser tratado com cuidado, especialmente em contextos públicos ou de distribuição.
 
 ## 👤 Autor
 
